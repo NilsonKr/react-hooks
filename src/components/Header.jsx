@@ -5,11 +5,11 @@ const Header = props => {
 
 	//Change Color
 	const handleChangeMode = () => {
-		if (darkMode) {
+		if (!darkMode) {
 			document.body.style.background = 'black';
 			document.body.style.color = 'white';
 		}
-		if (!darkMode) {
+		if (darkMode) {
 			document.body.style.background = 'white';
 			document.body.style.color = 'black';
 		}
@@ -20,7 +20,7 @@ const Header = props => {
 	return (
 		<header>
 			<button type='button' onClick={handleChangeMode}>
-				{darkMode ? 'React DarkMode' : 'React LightMode'}
+				{darkMode ? 'React LightMode' : 'React DarkMode'}
 			</button>
 		</header>
 	);
