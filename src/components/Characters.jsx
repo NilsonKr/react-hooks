@@ -14,10 +14,12 @@ const Characters = () => {
 			.catch(err => console.log(err.message));
 	}, []);
 
+	//Show more characters
 	const showMore = () => {
 		fetch(characters.info.next)
 			.then(data => data.json())
 			.then(data =>
+				//Concating Past characters and new characters
 				setCharacters({ ...data, results: [...characters.results, ...data.results] })
 			)
 			.catch(err => console.log(err.message));
