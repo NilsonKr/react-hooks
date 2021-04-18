@@ -11,12 +11,18 @@ const Header = props => {
 	//Change Color on css variables and context provider
 	const handleChangeMode = () => {
 		if (!darkMode) {
-			context.setTheme({ font: '#1fac4e' });
+			context.setTheme({
+				font: '#1fac4e',
+				favorite: { font: '#fff', border: '#1fac4e' },
+			});
 			document.body.style.setProperty('--second-bg', '#24325fff');
 			document.body.style.setProperty('--bg-color', '#000');
 		}
 		if (darkMode) {
-			context.setTheme({ font: '#fff' });
+			context.setTheme({
+				font: '#fff',
+				favorite: { font: '#24325fff', border: '#24325fff' },
+			});
 			document.body.style.setProperty('--second-bg', '#1fac4e');
 			document.body.style.setProperty('--bg-color', '#fff');
 		}

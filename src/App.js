@@ -1,13 +1,15 @@
 import React from 'react';
 
 import Header from './components/Header';
-import Characters from './components/Characters';
+import CharactersContainer from './components/CharactersContainer';
+import FavoritesList from './components/FavoritesList';
 
 function App() {
 	return (
 		<div className='App'>
 			<Header />
-			<Characters />
+			<FavoritesList />
+			<CharactersContainer />
 		</div>
 	);
 }
