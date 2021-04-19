@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useMemo } from 'react';
 import Context from '../context';
 
 import Characters from './Characters';
+import Search from './Search';
 
 import '../styles/Characters.css';
 
@@ -9,7 +10,7 @@ const urlApi = 'http://rickandmortyapi.com/api/character';
 
 const CharactersContainer = () => {
 	const [characters, setCharacters] = useState({ results: [] });
-	const [query, SetQuery] = useState('');
+	const [query, setQuery] = useState('');
 	const { favorites, setFavorites } = useContext(Context);
 
 	useEffect(() => {
@@ -53,12 +54,7 @@ const CharactersContainer = () => {
 
 	return (
 		<div className='characters'>
-			<input
-				type='text'
-				placeholder='Search a Character ... '
-				value={query}
-				onChange={ev => SetQuery(ev.target.value)}
-			/>
+			<Search query={query} setQuery={setQuery} />
 			<Characters
 				characters={filteredCharacters}
 				showMore={showMore}
