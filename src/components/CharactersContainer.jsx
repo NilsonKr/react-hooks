@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import Context from '../context';
+import useCharacters from '../hooks/useCharacters';
 
 import Characters from './Characters';
 import Search from './Search';
@@ -9,27 +10,9 @@ import '../styles/Characters.css';
 const urlApi = 'http://rickandmortyapi.com/api/character';
 
 const CharactersContainer = () => {
-	const [characters, setCharacters] = useState({ results: [] });
+	const [characters, updateCharacters] = useCharacters(urlApi);
 	const [query, setQuery] = useState('');
 	const { favorites, setFavorites } = useContext(Context);
-
-	useEffect(() => {
-		fetch(urlApi)
-			.then(data => data.json())
-			.then(data => setCharacters(data))
-			.catch(err => console.log(err.message));
-	}, []);
-
-	//Show more characters
-	const showMore = () => {
-		fetch(characters.info.next)
-			.then(data => data.json())
-			.then(data =>
-				//Concating Past characters and new characters
-				setCharacters({ ...data, results: [...characters.results, ...data.results] })
-			)
-			.catch(err => console.log(err.message));
-	};
 
 	//Handle Favorite
 	const handleFavorite = item => {
@@ -57,7 +40,7 @@ const CharactersContainer = () => {
 			<Search query={query} setQuery={setQuery} />
 			<Characters
 				characters={filteredCharacters}
-				showMore={showMore}
+				showMore={updateCharacters}
 				handleFavorite={handleFavorite}
 			/>
 		</div>
